@@ -26,6 +26,9 @@ node* Hashtable::insert(int i) {
 	// create new node in correct index in hashArray (use hash function mod 43)
 		// if node already exists, increment count
 	// set that node's value=i, return a pointer to new node created
+	
+	int index = i%43;
+	if (i<0) index += 43;
 
 	node *n = lookup(i);  // returns node w/ value=i or nullptr if node != exist
 	while (n) {  // traverse through linkedlist until correct node found
@@ -36,9 +39,9 @@ node* Hashtable::insert(int i) {
 		else n=n->next;  // else go to next node in linkedlist
 	}
 	if (!n) {
-		n = new node(i,1,i%43);  // if node != exist add new node to end of linkedlist at hashArray[index]
+		n = new node(i,1,index);  // if node != exist add new node to end of linkedlist at hashArray[index]
 			// n must be either head of empty or tail of linkedlist
-		hashArray[i%43] = n;
+		hashArray[index] = n;
 	}
 	
 	return n; 
@@ -46,6 +49,7 @@ node* Hashtable::insert(int i) {
 
 node* Hashtable::lookup(int i) { 
 	int index = i%43;
+	if (i<0) index += 43;
 
 	node *n = hashArray[index];
 	while (n) {  // traverse through linkedlist at hashArray[index], search for node w/ value;

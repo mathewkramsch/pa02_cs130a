@@ -1,18 +1,19 @@
 // Minheap.cpp
 
 #include "Minheap.h"
+using namespace std;
 
 Minheap::Minheap() {}
 
 Minheap::~Minheap() {}
 
-bool Minheap::insert(int i) { return false; }
+int Minheap::insert(int i) { return 0; }
 
-bool Minheap::lookup(int i) { return false; }
+int Minheap::lookup(int i) { return 0; }
 
-bool Minheap::deleteMin(int i) { return false; }
+int Minheap::deleteItem(int i) { return 0; }
 
-bool Minheap::deleteItem(int i) { return false; }
+pair<int,int> Minheap::deleteMin() { return pair<int,int>(0,0); }
 
 void Minheap::print() {}
 

@@ -4,6 +4,7 @@
 #define MINHEAP_H
 #include "Hashtable.h"
 #include "node.h"
+#include <utility>
 
 class Minheap {
 	// Minheap implemented as array of nodes
@@ -13,10 +14,10 @@ class Minheap {
 		~Minheap();
 
 		// PUBLIC METHODS
-		bool insert(int i);
-		bool lookup(int i);
-		bool deleteMin(int i);
-		bool deleteItem(int i);
+		int insert(int i);
+		int lookup(int i);
+		int deleteItem(int i);
+		std::pair<int,int> deleteMin();
 		void print();
 
 	private:

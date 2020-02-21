@@ -4,6 +4,7 @@
 #define HASHTABLE_H
 #include "Minheap.h"
 #include "node.h"
+#include <utility>
 
 class Hashtable {
 	// Hash table using seperate chaining, implemented as array of nodes
@@ -13,10 +14,10 @@ class Hashtable {
 		~Hashtable();
 
 		// PUBLIC METHODS
-		bool insert(int i);
-		bool lookup(int i);
-		bool deleteMin(int i);
-		bool deleteItem(int i);
+		int insert(int i);
+		int lookup(int i);
+		int deleteItem(int i);
+		std::pair<int,int> deleteMin();
 		void print();
 
 	private:

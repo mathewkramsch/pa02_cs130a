@@ -1,18 +1,19 @@
 // Hashtable.cpp
 
 #include "Hashtable.h"
+using namespace std;
 
 Hashtable::Hashtable() {}
 
 Hashtable::~Hashtable() {}
 
-bool Hashtable::insert(int i) { return false; }
+int Hashtable::insert(int i) { return 0; }
 
-bool Hashtable::lookup(int i) { return false; }
+int Hashtable::lookup(int i) { return 0; }
 
-bool Hashtable::deleteMin(int i) { return false; }
+int Hashtable::deleteItem(int i) { return 0; }
 
-bool Hashtable::deleteItem(int i) { return false; }
+pair<int,int> Hashtable::deleteMin() { return pair<int,int>(0,0); }
 
 void Hashtable::print() {}
 

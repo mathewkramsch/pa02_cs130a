@@ -8,4 +8,4 @@ prog1.out: ${DEPENDENCIES}
 	${CXX} $^ ${FLAGS} -o $@
 
 clean:
-	/bin/rm -f *.o prog1
+	/bin/rm -f *.o main_helper/*.o underlying_structures/*.o prog1.out

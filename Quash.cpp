@@ -1,18 +1,20 @@
-// Minheap.cpp
+// Quash.cpp
 
 #include "Quash.h"
+#include <iostream>
+using namespace std;
 
 Quash::Quash() {}
 
 Quash::~Quash() {}
 
-bool Quash::insert(int i) { return false; }
+int Quash::insert(int i) { return 0; }
 
-bool Quash::lookup(int i) { return false; }
+int Quash::lookup(int i) { return 0; }
 
-bool Quash::deleteMin(int i) { return false; }
+int Quash::deleteItem(int i) { return 0; }
 
-bool Quash::deleteItem(int i) { return false; }
+pair<int,int> Quash::deleteMin() { return pair<int,int>(0,0); }
 
-void Quash::print() {}
+void Quash::print() { cout << "printed" << endl;}
 

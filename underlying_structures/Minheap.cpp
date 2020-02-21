@@ -5,7 +5,6 @@
 using namespace std;
 
 Minheap::Minheap() {
-	cout << "Minheap()" << endl;
 	numElements = 0;
 	heapArray = new node*[20]{nullptr};  // make heapArray point to an array on heap (array of node pointers)
 
@@ -15,7 +14,6 @@ Minheap::Minheap() {
 }
 
 Minheap::~Minheap() {
-	cout << "~Minheap()" << endl;
 	for (int i=0; i<20; i++) {  // to delete the nodes on heap that each element in heapArray points to
 		if (heapArray[i]!=nullptr) delete heapArray[i];
 	}	
@@ -33,15 +31,17 @@ node* Minheap::insert(int i) {
 	if (n) {  // if node exists, increment both counts
 		node *minHeapNode = n->link;  // increment node in heapArray linked with node in hashArray
 		minHeapNode->count++;
-		n->count++; 
+		n = minHeapNode;  // now make n = to minHeapNode so can return n at the end
 	}
-	else {  // if node != exit, make a new node in correct place in heapArray
-		// new node's next=nullptr bc not a linkedlist
+	else {  // if node != exist, make a new node in correct place in heapArray
+		// leave node's next=nullptr bc not a linkedlist
 		// leave link=nullptr, link is set in Quash::insert
 		n = new node(i,1,numElements);
 		heapArray[numElements++] = n;  // add node to end of array, then increment numElements
 		heapify_up(n);  // restore heap property to heapArray
 	}
+
+	cout << "\tinserted " << i << " to minheap at index: " << numElements-1 << endl;
 	return n;
 }
 
@@ -70,6 +70,7 @@ void Minheap::heapify_up(node *n) {
 
 	node *tmp_pn = heapArray[pi];  // temporary copy of parent node
 	if (tmp_pn->value < n->value) {  // if parent < current, swap
+		cout << "\theapify_up" <<endl;
 		heapArray[pi] = n;  // set node @ parent index = n
 		n = tmp_pn;  // set n = to parent
 		heapify_up(n);

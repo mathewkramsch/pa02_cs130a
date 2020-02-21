@@ -6,6 +6,8 @@
 #include "node.h"
 #include <utility>
 
+class Hashtable;  // forward declaration
+
 class Minheap {
 	// Minheap implemented as array of nodes
 
@@ -20,10 +22,12 @@ class Minheap {
 		int deleteItem(int i);
 		std::pair<int,int> deleteMin();
 		void print();
+		void setLink(node *n);
+	
+		node* *heapArray;  // arary of pointers to nodes
 
 	private:
 		int numElements;  // # nodes in heapArray (ignoring count for each node)
-		node* *heapArray;  // arary of pointers to nodes
 
 		// HELPER METHODS
 		void heapify_up(node *n);

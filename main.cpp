@@ -33,6 +33,7 @@ int main(int argc, char *argv[]) {  // argc = # inputs, argv = array of cstrings
 		if (word=="insert") {
 			count = q.insert(num);
 			if (count==1) message="item successfully inserted, count = " + to_string(count);
+			else if (count==0) message="not inserted, debug that SHIT BRO, DAMN";
 			else message="item already present, new count = " + to_string(count);
 			cout << message << endl;
 		} 

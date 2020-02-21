@@ -24,7 +24,9 @@ Hashtable::~Hashtable() {
 	delete [] hashArray;  // but you still gotta delete hashArray bc that shits on the heap bruh
 }
 
-int Hashtable::insert(int i) { return 0; }
+node* Hashtable::insert(int i) { 
+	return nullptr; 
+}
 
 int Hashtable::lookup(int i) { return 0; }
 

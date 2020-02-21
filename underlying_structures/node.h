@@ -4,7 +4,7 @@
 #define NODE_H
 
 struct node {
-	node(int v,int c): value(v),count(c),next(0),link(0) {}
+	node(int v,int c=0): value(v),count(c),next(0),link(0) {}
 	int value;
 	int count;
 	node *next;  // pointer to next node in linkedlist (points to nullptr in heapArray nodes)

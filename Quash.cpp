@@ -8,7 +8,22 @@ Quash::Quash() {}  // Hashtable/Minheap hash/heap constructors called automatica
 
 Quash::~Quash() {}
 
-int Quash::insert(int i) { return 0; }
+int Quash::insert(int i) {
+	// insert i in heapArray & hashArray, link the two nodes
+	// return count of i after insert (1 if not already in table, count>1 if already in table)
+	node *minHeapNode = heap.insert(i);  // creates new node in heapArray w/ value=i, returns a pointer to node created
+	node *hashNode = hash.insert(i);  // creates new node in hashArray, sets newHashNode = node created
+		// both insert methods for heap/hash create new node in correct index in array
+		// then set that node's value=i, the method returns a pointer to the new node created
+
+	if (hashNode==0 || minHeapNode==0) return 0;  // means something went wrong, didnt insert
+
+	// link the 2 nodes to eachother
+	minHeapNode->link = hashNode;
+	hashNode->link = minHeapNode;
+
+	return minHeapNode->count;  // return count of i after insertion
+}
 
 int Quash::lookup(int i) { return 0; }
 

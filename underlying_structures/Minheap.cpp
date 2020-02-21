@@ -22,7 +22,9 @@ Minheap::~Minheap() {
 	delete [] heapArray;  // delete array on heap (array of node pointers)
 }
 
-int Minheap::insert(int i) { return 0; }
+node* Minheap::insert(int i) { 
+	return nullptr;
+}
 
 int Minheap::lookup(int i) { return 0; }
 

@@ -14,7 +14,7 @@ class Minheap {
 		~Minheap();
 
 		// PUBLIC METHODS
-		int insert(int i);
+		node* insert(int i);
 		int lookup(int i);
 		int deleteItem(int i);
 		std::pair<int,int> deleteMin();

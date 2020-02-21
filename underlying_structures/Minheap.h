@@ -12,17 +12,21 @@ class Minheap {
 	public:
 		Minheap();
 		~Minheap();
+		Hashtable *hashLink;  // set = to Hashtable object created in Quash() (to use hashtable's lookup)
 
 		// PUBLIC METHODS
 		node* insert(int i);
-		int lookup(int i);
+		node* lookup(int i);
 		int deleteItem(int i);
 		std::pair<int,int> deleteMin();
 		void print();
 
 	private:
-		int size;
+		int numElements;  // # nodes in heapArray (ignoring count for each node)
 		node* *heapArray;  // arary of pointers to nodes
+
+		// HELPER METHODS
+		void heapify_up(node *n);
 
 };
 

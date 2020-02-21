@@ -2,7 +2,6 @@
 
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
-#include "Minheap.h"
 #include "node.h"
 #include <utility>
 
@@ -15,7 +14,7 @@ class Hashtable {
 
 		// PUBLIC METHODS
 		node* insert(int i);
-		int lookup(int i);
+		node* lookup(int i);
 		int deleteItem(int i);
 		std::pair<int,int> deleteMin();
 		void print();

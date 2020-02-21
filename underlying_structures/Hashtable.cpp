@@ -28,7 +28,16 @@ node* Hashtable::insert(int i) {
 	return nullptr; 
 }
 
-int Hashtable::lookup(int i) { return 0; }
+node* Hashtable::lookup(int i) { 
+	int index = i%43;
+
+	node *n = hashArray[index];
+	while (n) {  // traverse through linkedlist at hashArray[index], search for node w/ value;
+		if (n->value == i) return n;
+		n = n->next;
+	}
+	return nullptr; 
+}
 
 int Hashtable::deleteItem(int i) { return 0; }
 

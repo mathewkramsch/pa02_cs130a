@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-Quash::Quash() {}
+Quash::Quash() {}  // Hashtable/Minheap hash/heap constructors called automatically
 
 Quash::~Quash() {}
 

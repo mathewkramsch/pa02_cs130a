@@ -1,8 +1,8 @@
 // main.cpp
 
 #include "Quash.h"
-#include "main_helper/mainFuncs.h"
-#include <iostream>
+#include <sstream>  // for stringstream
+#include <iostream>  // for cout
 using namespace std;
 
 int main(int argc, char *argv[]) {  // argc = # inputs, argv = array of cstrings
@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {  // argc = # inputs, argv = array of cstrings
 			else message="item found, count = " + to_string(count);
 			cout << message << endl;
 		} 
-		else if (word=="deleteItem") {
+		else if (word=="delete") {
 			count = q.deleteItem(num);
 			if (count==-1) message="item not present in table";
 			else if (count==0) message="item successfully deleted";

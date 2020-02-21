@@ -2,8 +2,8 @@
 
 #ifndef QUASH_H
 #define QUASH_H
-#include "Hashtable.h"
-#include "Minheap.h"
+#include "underlying_structures/Hashtable.h"
+#include "underlying_structures/Minheap.h"
 
 class Quash {
 

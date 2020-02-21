@@ -1,7 +1,7 @@
 // main.cpp
 
 #include "Quash.h"
-#include "mainFuncs.h"
+#include "main_helper/mainFuncs.h"
 #include <iostream>
 using namespace std;
 

@@ -2,9 +2,9 @@
 
 CXX=g++
 FLAGS=-std=c++11
-DEPENDENCIES=main.o mainFuncs.o Quash.o Minheap.o Hashtable.o
+DEPENDENCIES=main.o main_helper/mainFuncs.o Quash.o underlying_structures/Minheap.o underlying_structures/Hashtable.o
 
-prog1: ${DEPENDENCIES}
+prog1.out: ${DEPENDENCIES}
 	${CXX} $^ ${FLAGS} -o $@
 
 clean:

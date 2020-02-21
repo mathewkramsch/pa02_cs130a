@@ -2,7 +2,7 @@
 
 CXX=g++
 FLAGS=-std=c++11
-DEPENDENCIES=main.o Quash.o underlying_structures/Minheap.o underlying_structures/Hashtable.o
+DEPENDENCIES=main.o Quash.o underlying_structures/Minheap.o underlying_structures/Hashtable.o underlying_structures/node.o
 
 prog1.out: ${DEPENDENCIES}
 	${CXX} $^ ${FLAGS} -o $@

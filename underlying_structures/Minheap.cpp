@@ -15,7 +15,9 @@ Minheap::Minheap() {
 
 Minheap::~Minheap() {
 	for (int i=0; i<20; i++) {  // to delete the nodes on heap that each element in heapArray points to
-		if (heapArray[i]!=nullptr) delete heapArray[i];
+		if (heapArray[i]!=nullptr) { 
+			delete heapArray[i];
+		}
 	}	
 	delete [] heapArray;  // delete array on heap (array of node pointers)
 }
@@ -32,6 +34,7 @@ node* Minheap::insert(int i) {
 		node *minHeapNode = n->link;  // increment node in heapArray linked with node in hashArray
 		minHeapNode->count++;
 		n = minHeapNode;  // now make n = to minHeapNode so can return n at the end
+		heapArray[n->index] = n;
 	}
 	else {  // if node != exist, make a new node in correct place in heapArray
 		// leave node's next=nullptr bc not a linkedlist
@@ -41,7 +44,6 @@ node* Minheap::insert(int i) {
 		heapify_up(n);  // restore heap property to heapArray
 	}
 
-	cout << "\tinserted " << i << " to minheap at index: " << numElements-1 << endl;
 	return n;
 }
 
@@ -56,7 +58,11 @@ int Minheap::deleteItem(int i) { return 0; }
 
 pair<int,int> Minheap::deleteMin() { return pair<int,int>(0,0); }
 
-void Minheap::print() {}
+void Minheap::print() {
+	for (int i=0; i<numElements; i++) cout << heapArray[i]->value << " ";
+	cout << endl;
+	
+}
 
 void Minheap::heapify_up(node *n) {
 	// restores heap property to arrray after insertion/deletion
@@ -68,11 +74,12 @@ void Minheap::heapify_up(node *n) {
 	int pi = (ci-1)/2;  // parent of current's index
 	if (ci==0) return;  // this means heapArray only has 1 node, so satisfies heap property
 
-	node *tmp_pn = heapArray[pi];  // temporary copy of parent node
-	if (tmp_pn->value < n->value) {  // if parent < current, swap
-		cout << "\theapify_up" <<endl;
+	while (heapArray[pi]->value > n->value) {  // if parent < current, swap
+		node *tmp = new node(0,0);
+		tmp = heapArray[pi];
 		heapArray[pi] = n;  // set node @ parent index = n
-		n = tmp_pn;  // set n = to parent
-		heapify_up(n);
+		heapArray[ci] = tmp;  // set n = to temporary copy of parent
+		ci = pi;
+		pi = (ci-1)/2;
 	}  // else, heap property is restored, do nothing
 }

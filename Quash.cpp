@@ -36,5 +36,8 @@ int Quash::deleteItem(int i) { return 0; }
 
 pair<int,int> Quash::deleteMin() { return pair<int,int>(0,0); }
 
-void Quash::print() { cout << "printed" << endl;}
+void Quash::print() { 
+	heap.print();
+	// hash.print();
+}
 

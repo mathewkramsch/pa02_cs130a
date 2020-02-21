@@ -22,7 +22,6 @@ class Minheap {
 		int deleteItem(int i);
 		std::pair<int,int> deleteMin();
 		void print();
-		void setLink(node *n);
 	
 		node* *heapArray;  // arary of pointers to nodes
 

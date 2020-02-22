@@ -8,4 +8,4 @@ prog1.out: ${DEPENDENCIES}
 	${CXX} $^ ${FLAGS} -o $@
 
 clean:
-	/bin/rm -f *.o underlying_structures/*.o prog1.out
+	/bin/rm -f *.o underlying_structures/*.o prog1.out vgcore*

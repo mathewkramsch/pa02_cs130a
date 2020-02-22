@@ -19,7 +19,7 @@ class Minheap {
 		// PUBLIC METHODS
 		node* insert(int i);
 		node* lookup(int i);
-		int deleteItem(node *n);
+		int deleteItem(int i);
 		std::pair<int,int> deleteMin();
 		void print();
 	

@@ -4,10 +4,8 @@
 #include <iostream>  // DELETE
 using namespace std;
 
-Minheap::Minheap() {
+Minheap::Minheap(): numElements(0) {
 	heapArray = new node*[20]{nullptr};  // make heapArray point to an array on heap (array of node pointers)
-
-	numElements = 0;
 	// IF I WANNA MAKE IT ON THE STACK
 	// heapArray[size];
 	// for (int i=0; i<20; i++) heapArray[i]=nullptr;
@@ -27,15 +25,12 @@ node* Minheap::insert(int i) {
 		// use lookup to determine if node exists already 
 	// returns a pointer to the new node created
 	
-	cout << "\n\t\t[INSERT]: " << i << endl;
-	
 	if (numElements >= 20) cout << "overload error" << endl;  // DELETE
 
 
 	node *n = lookup(i);  // this returns the node in hashArray (n is a hashNode)
 	if (n) {  // if node exists, increment both counts
 		int indexOfLinkedHeapNode = n->index;  // hashNodes(n) store the index of their linked heapNode in index field
-		cout << "[indexOfLinkedHeapNode]: " << indexOfLinkedHeapNode << endl;
 		heapArray[indexOfLinkedHeapNode] = n->link;  // increment node in heapArray linked with node in hashArray
 		heapArray[indexOfLinkedHeapNode]->count += 1;
 		// n = minHeapNode;  // now make n = to minHeapNode so can return n at the end
@@ -51,37 +46,48 @@ node* Minheap::insert(int i) {
 }
 
 node* Minheap::lookup(int i) { 
-	cout << "Minheap::lookup\n";
 	// returns node pointer to correct element in heapArray, nullptr if not found
 	// use Hashitable's lookup to return pointer (quicker)
 
 	return hashLink->lookup(i);
 }
 
-int Minheap::deleteItem(node *n) {  // this is only called with item actually needs to be deleted
-	// node n is a pointer to the node in heapArray that needs to be deleted
-	cout << "Minheap::deleteItem\n";
+int Minheap::deleteItem(int i) {  // this is only called with item actually needs to be deleted
+	// int i is the index of the node in heapArray that needs to be deleted completely
+	// returns count after delete: 0 if successful, -1 otherwise
 
-	int index = n->index;
-	if (n->value==heapArray[numElements-1]->value) { 
-		cout << "delete n\n"; 
-		delete n;
-		numElements--;
-		cout << "wont get past here\n";
-	}
+	// if i==-1: return -1
+	// if i==0: call deleteMin
+	// if i+1==numElements: delete node
+	// else 
+		// swap first/last elements
+		// delete last element
+		// heapify_down(node) [root of subtree that needs to be heapified]
+	
+	// decrement numElements
+	// return 0
+
+	if (i==-1) return -1;
+	if (i==0) deleteMin();
+	else if (i+1 == numElements) delete heapArray[i];
 	else {
-		heapArray[index] = heapArray[numElements-1];
-		delete heapArray[--numElements];
-		heapify_down(heapArray[index]);  // restore heap property
+		heapArray[i] = heapArray[numElements-1];  // set node = to last element
+		delete heapArray[numElements-1];  // delete last element
+		heapify_down(heapArray[i]);  // restore heap property
 	}
+	
+	numElements--;
 	return 0; 
 }
 
 pair<int,int> Minheap::deleteMin() { return pair<int,int>(0,0); }
 
 void Minheap::print() {
-	for (int i=0; i<numElements; i++) 
-		cout << heapArray[i]->value << "," << heapArray[i]->count << " ";
+	// cout << "Minheap: ";
+	for (int i=0; i<numElements; i++) {
+		cout << heapArray[i]->value << " ";
+		// cout << "," << heapArray[i]->count << " ";
+	}
 	cout << endl;
 	
 }
@@ -91,8 +97,6 @@ node* Minheap::heapify_up(node *n) {
 	// if new key > parent dont do anything, otherwise use bubble-up swaps till fixed
 		// recursive method: assumes everything heapified except for last element
 		// initial node* n should be at the end of heapArray	
-
-	cout << "heapify_up" << endl;
 
 	// int prevci;
 	int prevci;
@@ -111,20 +115,15 @@ node* Minheap::heapify_up(node *n) {
 		ci = pi;
 		pi = (ci-1)/2;
 
-			cout << "\t[VALUE SWAPPED UP]: " << heapArray[ci]->value << endl;
-			cout << "\t[INDEX STORED IN VALUE]: " << heapArray[ci]->index << endl;
 		heapArray[prevci]->index = prevci;
 		if (heapArray[prevci]->link) heapArray[prevci]->link->index = prevci;
 		heapArray[ci]->index = ci;
 		if (heapArray[ci]->link) heapArray[ci]->link->index = ci;
-			cout << "\t[NEW INDEX STORED IN VALUE]: " << heapArray[ci]->index << endl;
-			cout << "\t[NEW INDEX STORED IN SWAPPED VALUE]: " << heapArray[prevci]->index << endl;
 	}
 	return heapArray[ci];
 }
 
 void Minheap::heapify_down(node *n) {
-	cout << "heapify_down\n";
 	// restores heap property to array after deletion
 	int ci = n->index;  // current index
 	int li;  // left child index

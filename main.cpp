@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {  // argc = # inputs, argv = array of cstrings
 		} 
 		else if (word=="delete") {
 			count = q.deleteItem(num);
-			if (count==-1) message="item not present in table";
+			if (count==-1) message="item not present in the table";
 			else if (count==0) message="item successfully deleted";
 			else message="item count decremented, new count = " + to_string(count);
 			cout << message << endl;

@@ -19,7 +19,7 @@ class Minheap {
 		// PUBLIC METHODS
 		node* insert(int i);
 		node* lookup(int i);
-		int deleteItem(int i);
+		int deleteItem(node *n);
 		std::pair<int,int> deleteMin();
 		void print();
 	
@@ -29,7 +29,8 @@ class Minheap {
 		int numElements;  // # nodes in heapArray (ignoring count for each node)
 
 		// HELPER METHODS
-		void heapify_up(node *n);
+		node* heapify_up(node *n);
+		void heapify_down(node *n);
 
 };
 

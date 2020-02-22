@@ -7,7 +7,7 @@ using namespace std;
 
 int main(int argc, char *argv[]) {  // argc = # inputs, argv = array of cstrings
 
-	if (argc!=2) { cerr<<"no input\n"; return 1; }
+	if (argc!=2) { cerr << "no input\n"; return 1; }
 
 	stringstream ss(argv[1]);
 	string word="";

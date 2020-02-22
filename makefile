@@ -1,7 +1,7 @@
 # makefile
 
 CXX=g++
-FLAGS=-std=c++11
+FLAGS=-std=c++11 -Wall -Wextra -Werror
 DEPENDENCIES=main.o Quash.o underlying_structures/Minheap.o underlying_structures/Hashtable.o underlying_structures/node.o
 
 prog1.out: ${DEPENDENCIES}

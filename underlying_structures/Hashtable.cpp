@@ -27,19 +27,21 @@ node* Hashtable::insert(int i) {
 		// if node already exists, increment count
 	// set that node's value=i, return a pointer to new node created
 	
+	cout << "Hashtable::insert\n";
+	
 	int index = i%43;
 	if (i<0) index += 43;
 
 	node *n = lookup(i);  // returns node w/ value=i or nullptr if node != exist
 	while (n) {  // traverse through linkedlist until correct node found
 		if (n->value==i) {  		
-			hashArray[n->index]->count++;  // increment node in hashArray;
+			hashArray[index]->count++;  // increment node in hashArray;
 			break;
 		}
 		else n=n->next;  // else go to next node in linkedlist
 	}
 	if (!n) {
-		n = new node(i,1,index);  // if node != exist add new node to end of linkedlist at hashArray[index]
+		n = new node(i,1);  // if node != exist add new node to end of linkedlist at hashArray[index]
 			// n must be either head of empty or tail of linkedlist
 		hashArray[index] = n;
 	}
@@ -48,6 +50,7 @@ node* Hashtable::insert(int i) {
 }
 
 node* Hashtable::lookup(int i) { 
+	cout << "Hashtable::lookup\n";
 	int index = i%43;
 	if (i<0) index += 43;
 
@@ -62,7 +65,45 @@ node* Hashtable::lookup(int i) {
 	return nullptr; 
 }
 
-int Hashtable::deleteItem(int i) { return 0; }
+int Hashtable::deleteItem(int i) { 
+	// delete i from hashArray (use lookup)
+		// if in table, decrement
+			// if count after delete > 1
+				// decrement both
+			// else 
+				// set = nullptr
+				// call heap delete
+		// if not in table, return -1
+	// return count after delete
+
+	cout << "Hashtable::deleteItem\n";
+
+	node *n = lookup(i);
+	if (n) {
+		if (n->count>1) {  // decrement both
+			n->count--;
+			n->link->count--;
+			return n->count;
+		}
+		else {  // count==1, delete both
+			int index = n->value%43;
+			if (n->value<0) index += 43;
+			heapLink->deleteItem(n->link);  // call Minheap's delete method
+			n = hashArray[index];  // set n = to head of list
+			if (!n->next) delete n;
+			else while (n->next) {
+				node *rm = n->next;
+				if (rm->value==i) {
+					n->next = rm->next;
+					delete rm;
+				}
+				n=n->next;
+			}
+			return 0;
+		}
+	}
+	return -1;  // count==0, so not in table. return -1
+}
 
 pair<int,int> Hashtable::deleteMin() { return pair<int,int>(0,0); }
 

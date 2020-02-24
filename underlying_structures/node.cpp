@@ -7,8 +7,6 @@ using namespace std;
 node& node::operator =(const node &right) {
 	// assumes node has already been created on the heap
 	// just changes that node's variable values
-	
-	cout << "node::operator =" << endl;
 
 	if (this==&right) return *this;
 	value = right.value;

@@ -20,13 +20,14 @@ class Minheap {
 		node* insert(int i);
 		node* lookup(int i);
 		int deleteItem(int i);
-		std::pair<int,int> deleteMin();
+		void deleteMin();
 		void print();
+		void debugPrint();
 	
 		node* *heapArray;  // arary of pointers to nodes
 
-	private:
 		int numElements;  // # nodes in heapArray (ignoring count for each node)
+	private:
 
 		// HELPER METHODS
 		node* heapify_up(node *n);

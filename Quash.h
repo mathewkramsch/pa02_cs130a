@@ -19,6 +19,8 @@ class Quash {
 		std::pair<int,int> deleteMin();  // .first=(the item deleted) .second=(new count of min item, -1 if empty table)
 		void print();  // prints Minheap array with elements seperated by whitespace
 
+		void debugPrint();
+
 	private:
 		Minheap heap;  // minheap implemented as array of ints
 		Hashtable hash;  // hashtable implemented as array of nodes

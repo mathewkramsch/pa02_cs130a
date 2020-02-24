@@ -48,6 +48,7 @@ node* Hashtable::insert(int i) {
 }
 
 node* Hashtable::lookup(int i) { 
+
 	int index = i%43;
 	if (i<0) index += 43;
 
@@ -60,6 +61,10 @@ node* Hashtable::lookup(int i) {
 }
 
 pair<int,int> Hashtable::deleteItem(int i) { 
+	// i = value of node to be deleted
+	// p.first = count after deletion 
+	// p.second = index of node in heapArray that needs to be deleted completely
+
 	// delete i from hashArray (use lookup)
 		// if in table, decrement
 			// if count after delete > 1
@@ -80,37 +85,48 @@ pair<int,int> Hashtable::deleteItem(int i) {
 		n->link->count--;
 		p.first = n->count;
 	}
-	else if (n->count==1) {  // count==1, delete both
+	else if (n->count==1) {  // count==1, delete completely
 		int index = i%43;
 		if (i<0) index += 43;
 
-		// find head of linkedlist in hashArray
 		node *n2 = hashArray[index];
-		if (n2->value==i) {
-			p.second = n2->index;
-			delete n2;  // if n2 is the head
-		}
-		while (n2->next) {
-			if (n2->next->value==i) {
-				p.second = n2->next->index;
-				node *tmp = n2->next;
-				n2->next = tmp->next;
-				delete tmp;
+
+		if (n2->next) {
+			while (n2->next) {
+				if (n2->next->value==i) {
+					p.second = n2->next->index;
+					node *tmp = n2->next;
+					n2->next = tmp->next;
+					delete tmp;
+				}
+				n2=n2->next;
 			}
-			n2=n2->next;
+		} else {  // then n2 is the head of a 1 node linked list
+			p.second = n2->index;
+			hashArray[index] = n2->next;
+			delete n2;
 		}
-		hashArray[index] = nullptr;
 		p.first = 0;  // count after deletion =0, aka deleted
 	}
 	return p;
 }
 
-pair<int,int> Hashtable::deleteMin() { return pair<int,int>(0,0); }
+void Hashtable::deleteMin(int i) {
+	// i is the value of the node to be deleted, deletes node completely from hashtArray
+		
+	deleteItem(i);	
+}
 
 void Hashtable::print() {
-	cout << "hashtable: ";
-	for (int i=0; i<43; i++)
-		if (hashArray[i]!=nullptr) cout << hashArray[i]->value << "," << hashArray[i]->count << " ";
+	cout << "hashArray (val,count,index): ";
+	for (int i=0; i<43; i++) {
+		node *n = hashArray[i];
+		while (n) {
+			cout << hashArray[i]->value << "," << hashArray[i]->count << ",";
+			cout << hashArray[i]->index << " ";
+			n=n->next;
+		}
+	}
 	cout << endl;
 }
 	

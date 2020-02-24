@@ -22,12 +22,13 @@ int main(int argc, char *argv[]) {  // argc = # inputs, argv = array of cstrings
 		if (word=="deleteMin" || word=="deleteMin,") {
 			pair<int,int> p = q.deleteMin();
 			if (p.second==-1) message="min item not present since table is empty";
-			else if (p.second==0) message="min item successfully deleted";
+			else if (p.second==0) message="min item " + to_string(p.first) + " successfully deleted";
 			else message="min item = " + to_string(p.first) + ", count decremented, new count = " + to_string(p.second);
 			cout << message << endl;
 			continue;
 		}
 		if (word=="print," || word=="print") { q.print(); continue; }
+		if (word=="debugPrint" || word=="debugPrint,") { q.debugPrint(); continue; }
 
 		ss >> num;
 		if (word=="insert") {

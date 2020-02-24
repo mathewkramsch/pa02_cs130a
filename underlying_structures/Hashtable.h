@@ -20,7 +20,7 @@ class Hashtable {
 		node* insert(int i);
 		node* lookup(int i);
 		std::pair<int,int> deleteItem(int i);
-		std::pair<int,int> deleteMin();
+		void deleteMin(int i);
 		void print();
 		void setLink(node *n);
 	

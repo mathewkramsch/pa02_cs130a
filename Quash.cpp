@@ -51,18 +51,52 @@ int Quash::deleteItem(int i) {
 	// if hashCount==1: return 1
 	// if hashCount==-1: return -1
 	// else hashCount == the index of heapNode to delete in heapArray
-	
+
 	pair<int,int> hashCount = hash.deleteItem(i);  // .first = count after delete, .second = index of heapNode
-	if (hashCount.first==1) return 1;
+	if (hashCount.first>0) return hashCount.first;
 	if (hashCount.first==-1) return -1;
-	else if (hashCount.first==0) heap.deleteItem(hashCount.second);  // now just delete that item completely from hashArray
+	else if (hashCount.first==0) heap.deleteItem(hashCount.second);  // now just delete that item completely from heapArray
 	return 0;  // means item completely removed from hashArray and heapArray
 }
 
-pair<int,int> Quash::deleteMin() { return pair<int,int>(0,0); }
+pair<int,int> Quash::deleteMin() { 
+	// .first = min item deleted
+	// .second = count of min item after deletion (-1 if not in table)
+	
+	// lookup item in heap table, return -1 if not present
+		// if n==nullptr
+			// p.first = -1
+			// p.second = -1
+		// p.first = n->value
+		// if n->count >1, decrement from hash/heap
+			// p.second = n->count-1
+		// if n->count==1, deleteHeap to actually delete
+			// p.second = 0
+
+	pair<int,int> p(-1,-1);
+
+	if (heap.heapArray[0]==nullptr) return p;
+	p.first = heap.heapArray[0]->value;
+	if (heap.heapArray[0]->count > 1) {
+		cout << "here" << endl;
+		// decrement from hash/heap
+		heap.heapArray[0]->count--;
+		heap.heapArray[0]->link->count--;
+		p.second = heap.heapArray[0]->count;
+	} else if (heap.heapArray[0]->count==1) {
+		// deleteItem to actually delete
+		hash.deleteMin(p.first);  // deletes min from hashArray
+		heap.deleteMin();  // deletes min from heapArray
+		p.second = 0;
+	}
+	return p; 
+}
 
 void Quash::print() { 
 	heap.print();
-	// hash.print();
 }
 
+void Quash::debugPrint() {
+	heap.debugPrint();
+	hash.print();
+}

@@ -1,4 +1,4 @@
-# pa02_cs130a
-Mathew Kramsch
+# CS 130A Programming Assignment #2
+## Quash Data Structure Implementation
 
-> Programming Assignment #2 for CS130a: Quash data structure implementation
+A Quash is a Hash Table combined with a Min-Heap
